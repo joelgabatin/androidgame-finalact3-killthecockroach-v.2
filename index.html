@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4CAF50" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/img/cockroach-dead.ico">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- FontAwesome CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <title>Kill the Cockroaches!</title>
+
+</head>
+
+<body class="text-center">
+
+<div class="container">
+
+  <!-- Start Screen -->
+  <div id="startScreen" class="start-screen">
+    <p class="start-title">Are you ready to kill the Cockroaches!</p>
+    <button id="startBtn" class="start-btn">
+      <i class="fas fa-play"></i> Start Game
+    </button>
+    <!-- <button id="viewleaderboardBtn" class="viewleaderboardBtn">
+      <i class="fas fa-trophy"></i> Leaderboard
+    </button> -->
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="gameover-screen hidden">
+    <h3 class="gameover-title"><i class="fa-solid fa-hourglass-end"></i> Times Up!</h1>
+    <p class="gameover-score">Cockroaches Killed: <span id="finalScore">0</span></p>
+    <button id="playAgainBtn" class="playagain-btn">
+      <i class="fas fa-redo"></i> Play Again
+    </button>
+    <!-- <button id="viewleaderboardBtn" class="viewleaderboardBtn">
+      <i class="fas fa-trophy"></i> Leaderboard
+    </button> -->
+  </div>
+
+
+
+  <div class="row align-items-center position-relative my-3">
+    <div class="col-md-10 col-sm-10  col-8">
+      <h4 class="text-center" style="font-size: 2.0rem;">Kill the Cockroaches!</h4>
+    </div>
+    <div class="col-md-2 col-sm-2 text-end col-4">
+      <p class="mb-0"><span id="timer">90 </span> sec </p>
+      <p class="mb-0"><span id="score">0</span> kills</p>    
+      <div class="mutebutton">
+        <!-- Mute Button -->
+        <button id="muteBtn" class="btn btn-secondary end-0">
+          <i id="muteBtnIcon" class="fas fa-volume-up"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="gameArea" class="bg-light rounded border">
+    <!-- Cockroaches will appear here -->
+    <div id="speedUpNotification" class="speed-up hidden text-center">
+      ⚡Speed Up!
+    </div>
+  </div>
+
+  <div class="description my-2" style="font-size: .7rem;">
+    <p class="m-0">In 90 seconds kill Cockroaches as you can. Enjoy Killing!</p>
+  </div>
+
+    <!-- Offline Notification -->
+  <div id="offlineNotification" class="offline-notification hidden">
+    <p >No Internet Connection Detected.</p>
+    <p>Please reconnect!</p>
+  </div>
+
+    <!-- Offline Screen -->
+    <div id="offlineScreen" class="offline-screen hidden">
+      <h5>No Internet Connection Detected</h5>
+      <p>Please reconnect to continue playing.</p>
+    </div>
+
+  <!-- Install Button -->
+  <button id="installBtn" hidden class="btn btn-success position-fixed bottom-0 start-50 translate-middle-x ">
+    <i class="fas fa-download"></i> Install Game
+  </button>
+
+</div>
+ 
+  <!-- Scripts -->   
+  <script src="assets/js/service-worker.js"></script>
+  <script src="assets/js/game.js"></script>
+  <script src="assets/js/mute.js"></script>
+  <script src="assets/js/reset.js"></script>
+  <script src="assets/js/sound.js"></script>
+  <script src="assets/js/timer.js"></script>
+  <script src="assets/js/install-pwa.js"></script>
+  <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/network.js"></script>
+
+ 
+
+
+  
+</body>
+</html>
