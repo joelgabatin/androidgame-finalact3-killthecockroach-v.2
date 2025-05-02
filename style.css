@@ -63,7 +63,7 @@ body {
 }
 
 #startScreen{
-  z-index: 9999;
+  z-index: 1;
 }
 
 .speed-up {
@@ -142,7 +142,7 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  z-index: 9999;
+  z-index: 2;
 }
 
 .gameover-title {
@@ -211,4 +211,24 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+.timekills .timer{
+  font-size: 1 rem;
+}
+
+.timekills .kills{
+  font-size: 1.4rem;
+}
+
+/* Success Style */
+#alertModal.success .modal-header {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Error Style */
+#alertModal.error .modal-header {
+  background-color: #dc3545;
+  color: white;
 }

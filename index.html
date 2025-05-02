@@ -14,8 +14,14 @@
   <!-- FontAwesome CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-  <!-- Bootstrap Bundle JS -->
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap JS (requires jQuery) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- SweetAlert2 Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <title>Kill the Cockroaches!</title>
 
@@ -25,44 +31,23 @@
 
 <div class="container">
 
-  <!-- Start Screen -->
-  <div id="startScreen" class="start-screen">
-    <p class="start-title">Are you ready to kill the Cockroaches!</p>
-    <button id="startBtn" class="start-btn">
-      <i class="fas fa-play"></i> Start Game
-    </button>
-    <!-- <button id="viewleaderboardBtn" class="viewleaderboardBtn">
-      <i class="fas fa-trophy"></i> Leaderboard
-    </button> -->
-  </div>
-
-  <!-- Game Over Screen -->
-  <div id="gameOverScreen" class="gameover-screen hidden">
-    <h3 class="gameover-title"><i class="fa-solid fa-hourglass-end"></i> Times Up!</h1>
-    <p class="gameover-score">Cockroaches Killed: <span id="finalScore">0</span></p>
-    <button id="playAgainBtn" class="playagain-btn">
-      <i class="fas fa-redo"></i> Play Again
-    </button>
-    <!-- <button id="viewleaderboardBtn" class="viewleaderboardBtn">
-      <i class="fas fa-trophy"></i> Leaderboard
-    </button> -->
-  </div>
-
-
-
   <div class="row align-items-center position-relative my-3">
     <div class="col-md-10 col-sm-10  col-8">
       <h4 class="text-center" style="font-size: 2.0rem;">Kill the Cockroaches!</h4>
     </div>
-    <div class="col-md-2 col-sm-2 text-end col-4">
-      <p class="mb-0"><span id="timer">90 </span> sec </p>
-      <p class="mb-0"><span id="score">0</span> kills</p>    
-      <div class="mutebutton">
-        <!-- Mute Button -->
-        <button id="muteBtn" class="btn btn-secondary end-0">
-          <i id="muteBtnIcon" class="fas fa-volume-up"></i>
-        </button>
-      </div>
+    <div class="timekills col-md-2 col-sm-2 text-end col-4">
+      <p class="timer mb-0"><span id="timer">90 </span> sec </p>
+      <p class="kills mb-0"><span id="score">0</span> kills</p>    
+    </div>      
+    <div class="col-12 mutebutton text-end">
+      <!-- Mute Button -->
+      <button id="muteBtn" class="btn btn-secondary end-0">
+        <i id="muteBtnIcon" class="fas fa-volume-up"></i>
+      </button>
+      <!-- Mute Button -->
+      <button id="logoutBtn" class="btn btn-secondary end-0">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
     </div>
 
   </div>
@@ -78,17 +63,11 @@
     <p class="m-0">In 90 seconds kill Cockroaches as you can. Enjoy Killing!</p>
   </div>
 
-    <!-- Offline Notification -->
-  <div id="offlineNotification" class="offline-notification hidden">
-    <p >No Internet Connection Detected.</p>
-    <p>Please reconnect!</p>
+  <!-- Offline Screen -->
+  <div id="offlineScreen" class="offline-screen hidden">
+    <h5>No Internet Connection Detected</h5>
+    <p>Please reconnect to continue playing.</p>
   </div>
-
-    <!-- Offline Screen -->
-    <div id="offlineScreen" class="offline-screen hidden">
-      <h5>No Internet Connection Detected</h5>
-      <p>Please reconnect to continue playing.</p>
-    </div>
 
   <!-- Install Button -->
   <button id="installBtn" hidden class="btn btn-success position-fixed bottom-0 start-50 translate-middle-x ">
@@ -96,7 +75,14 @@
   </button>
 
 </div>
- 
+
+ <div id="includedContent"></div>
+
+   <!-- includes an html file -->
+   <script>
+    $('#includedContent').load('StartGameOverScreen.html');  // Include partial HTML here
+  </script>
+
   <!-- Scripts -->   
   <script src="assets/js/service-worker.js"></script>
   <script src="assets/js/game.js"></script>
@@ -107,10 +93,55 @@
   <script src="assets/js/install-pwa.js"></script>
   <script src="assets/js/cursor.js"></script>
   <script src="assets/js/network.js"></script>
+  <script src="assets/js/user-session.js"></script>
+  <!-- <script src="assets/js/user-login-logout.js"></script> -->
+  <script src="assets/js/server.js"></script>
+  
 
- 
+  <script>
+  // Register Button Click
+  $(document).on('click', '#registerBtn', function() {
 
+      console.log("btn register click");
+      const username = $('#regUsername').val().trim();
+      const password = $('#regPassword').val().trim();
+
+      if (!username || !password) {
+          $('#registerError').removeClass('d-none').text('Please fill in all fields');
+          return;
+      }
+
+      $.post('http://localhost:3000/register', { username, password }, function(response) {
+        if (response.success) {
+          $('#registerModal').modal('hide');
+          $('#startScreen').show();
+        } else {
+          $('#registerError').removeClass('d-none').text(response.message);
+        }
+      }).fail(function() {
+        $('#registerError').removeClass('d-none').text('Server error. Please try again later.');
+      });
 
   
+
+
+    $.ajax({
+      url: '/register',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        username: $('#regUsername').val(),
+        password: $('#regPassword').val()
+      }),
+      success: function(response) {
+        console.log(response.message);
+        alert('Registration successful!');
+      },
+      error: function(xhr) {
+        alert(xhr.responseJSON.message);
+      }
+    });
+  });
+  </script>
 </body>
 </html>

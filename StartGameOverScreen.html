@@ -1,0 +1,67 @@
+  <!-- Start Screen -->
+  <div id="startScreen" class="start-screen">
+    <p class="start-title">Are you ready to kill the Cockroaches!</p>
+    <button id="startBtn" class="start-btn">
+      <i class="fas fa-play"></i> Start Game
+    </button>
+    <!-- <button id="viewleaderboardBtn" class="viewleaderboardBtn">
+      <i class="fas fa-trophy"></i> Leaderboard
+    </button> -->
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="gameover-screen hidden">
+    <h3 class="gameover-title"><i class="fa-solid fa-hourglass-end"></i> Times Up!</h1>
+    <p class="gameover-score">Cockroaches Killed: <span id="finalScore">0</span></p>
+    <button id="playAgainBtn" class="playagain-btn">
+      <i class="fas fa-redo"></i> Play Again
+    </button>
+    <!-- <button id="viewleaderboardBtn" class="viewleaderboardBtn">
+      <i class="fas fa-trophy"></i> Leaderboard
+    </button> -->
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content p-4">
+                
+        <h5 class="modal-title mb-3">Login</h5>
+
+        <!-- Error Message Container -->
+        <div id="loginError" class="alert alert-danger py-2 small d-none" role="alert"></div>
+        
+        <input type="text" id="loginUsername" class="form-control mb-2" placeholder="Username">
+        <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Password">
+        <button id="loginBtn" class="btn btn-success w-100">Login</button>
+        <div class="mt-2 text-center">
+          <small>Don't have an account? 
+            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Register</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content p-4">
+        <h5 class="modal-title mb-3">Register</h5>
+
+        <!-- Error Message Container -->
+        <div id="registerError" class="alert alert-danger py-2 small d-none" role="alert"></div>
+
+        <input type="text" id="regUsername" class="form-control mb-2" placeholder="Username">
+        <input type="password" id="regPassword" class="form-control mb-3" placeholder="Password">
+        <button id="registerBtn" class="btn btn-success w-100">Register</button>
+        <div class="mt-2 text-center">
+          <small>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Modal for Login Success or Error -->
+
